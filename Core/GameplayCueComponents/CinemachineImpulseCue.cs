@@ -1,6 +1,6 @@
 ﻿#if SCOR_ENABLE_CINEMACHINE
 using UnityEngine;
-using Cinemachine;
+using Unity.Cinemachine;
 using StudioScor.Utilities;
 
 namespace StudioScor.GameplayCueSystem
@@ -42,16 +42,16 @@ namespace StudioScor.GameplayCueSystem
 
             if(_useLegacy)
             {
-                var impulseDefinition = _cinemachineImpulseSource.m_ImpulseDefinition;
+                var impulseDefinition = _cinemachineImpulseSource.ImpulseDefinition;
 
-                impulseDefinition.m_ImpactRadius = cueScale * _impactPointRatio;
-                impulseDefinition.m_DissipationDistance = cueScale * _dissipationDistanceRatio;
-                impulseDefinition.m_TimeEnvelope.m_SustainTime = Mathf.Max(0, (cueScale * _durataion) - impulseDefinition.m_TimeEnvelope.m_DecayTime);
+                impulseDefinition.ImpactRadius = cueScale * _impactPointRatio;
+                impulseDefinition.DissipationDistance = cueScale * _dissipationDistanceRatio;
+                impulseDefinition.TimeEnvelope.SustainTime = Mathf.Max(0, (cueScale * _durataion) - impulseDefinition.TimeEnvelope.DecayTime);
             }
             else
             {
                 _remainTime = cueScale * _durataion;
-                _cinemachineImpulseSource.m_ImpulseDefinition.m_ImpulseDuration = _remainTime;
+                _cinemachineImpulseSource.ImpulseDefinition.ImpulseDuration = _remainTime;
             }
 
             _cinemachineImpulseSource.GenerateImpulseAtPositionWithVelocity(position, velocity);
